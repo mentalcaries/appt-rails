@@ -1,0 +1,7 @@
+<h1>Appointments</h1>
+
+<% @appointments.each do |appointment| %>
+  <h2><%=link_to "Patient: #{appointment.name}", appointment%></h2>
+  <p>Requested date: <%= appointment.date %>
+  
+<%end%>
