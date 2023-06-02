@@ -1,0 +1,4 @@
+<h1>Edit Appointment</h1>
+<%= render partial: "form", locals: {appointment: @appointment} %>
+
+<%= button_to "Delete", @appointment, method: :delete, data: {turbo_confirm: "Are you sure?"} %>

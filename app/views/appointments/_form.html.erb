@@ -1,0 +1,33 @@
+<%= form_with model: @appointment do |form| %>
+<% if form.object.errors.any? %>
+  <div>
+  <% form.object.errors.full_messages.each do |message| %>
+  <div><%= message %></div>
+  </div>
+  <% end %>
+<% end %>
+
+  <div>
+    <%= form.label :name%>
+      <%= form.text_field :name%>
+  </div>
+
+  <div>
+    <%= form.label :date%>
+      <%= form.date_field :date%>
+  </div>
+
+  <div>
+    <%= form.label :phone%>
+      <%= form.telephone_field :phone%>
+  </div>
+
+  <div>
+    <%= form.label :description%>
+      <%= form.text_area :description%>
+  </div>
+
+  <%= form.button%>
+
+
+  <% end %>
