@@ -1,9 +1,9 @@
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_blog_post, except: [:index, :new, :create]
+  before_action :set_appointment, except: [:index, :new, :create]
 
   def index
-    @appointments = Appointment.all
+    @appointments = user_signed_in? Appointment.all : Appointment.to_be_scheduled
   end
 
   def show
@@ -40,14 +40,14 @@ class AppointmentsController < ApplicationController
 
   private
 
-  def set_blog_post
-    @appointment = Appointment.find(params[:id])
+  def set_appointment
+    @appointment = user_signed_in? ? Appointment.find(params[:id]) : Appointment.to_be_scheduled.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
 
   def appointment_params
-    params.require(:appointment).permit(:name, :date, :phone, :description)
+    params.require(:appointment).permit(:name, :date, :phone, :description, :scheduled_for)
   end
 
   def authenticate_user!
