@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, except: [:index, :new, :create]
 
   def index
-    @appointments = user_signed_in? Appointment.all : Appointment.to_be_scheduled
+    @appointments = user_signed_in? ? Appointment.all : Appointment.to_be_scheduled
   end
 
   def show
